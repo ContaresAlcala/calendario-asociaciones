@@ -72,12 +72,16 @@
         <button onclick="cambiarVista('agenda')">Agenda</button>
     </div>
 
-    <iframe id="https://calendar.google.com/calendar/embed?src=5cbc9355c151ea9623890a506707fd8f6aaf329fb6c2e1abaaabb5db8fffc3f0%40group.calendar.google.com&ctz=UTC" frameborder="0" scrolling="no"></iframe>
+    <iframe id="calendarFrame" 
+        src="https://calendar.google.com/calendar/embed?src=5cbc9355c151ea9623890a506707fd8f6aaf329fb6c2e1abaaabb5db8fffc3f0%40group.calendar.google.com&ctz=UTC&mode=MONTH" 
+        frameborder="0" scrolling="no">
+    </iframe>
 
     <script>
+        const baseURL = "https://calendar.google.com/calendar/embed?src=5cbc9355c151ea9623890a506707fd8f6aaf329fb6c2e1abaaabb5db8fffc3f0%40group.calendar.google.com&ctz=UTC";
+
         function cambiarVista(vista) {
             const iframe = document.getElementById('calendarFrame');
-            const urlBase = 'TU_URL_DE_GOOGLE_CALENDAR';
             let modeParam = '';
 
             switch(vista) {
@@ -92,10 +96,8 @@
                     break;
             }
 
-            iframe.src = urlBase + modeParam;
+            iframe.src = baseURL + modeParam;
         }
     </script>
 </body>
 </html>
-
-
