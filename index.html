@@ -1,34 +1,100 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Calendario asociaciones de Alcalá</title>
-  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.0/index.global.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.0/index.global.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Asociaciones</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            margin: 20px 0 10px 0;
+            text-align: center;
+        }
+
+        .buttons {
+            margin-bottom: 15px;
+        }
+
+        .buttons button {
+            margin: 0 5px;
+            padding: 8px 16px;
+            border: none;
+            background-color: #4285f4;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.2s;
+        }
+
+        .buttons button:hover {
+            background-color: #3367d6;
+        }
+
+        iframe {
+            border: 0;
+            width: 95%;
+            max-width: 1200px;
+            height: 700px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        @media (max-width: 768px) {
+            iframe {
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            iframe {
+                height: 400px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <h1>Mi Google Calendar</h1>
 
-<h2>Calendario asociaciones de Alcalá</h2>
-<div>
-  <input type="text" id="username" placeholder="Usuario (contares, pavotroton, jacaranda)">
-  <button id="loginBtn">Login</button>
-</div>
-
-<div id="calendar"></div>
-
-<div id="modal">
-  <div id="modalContent">
-    <h3>Nuevo evento</h3>
-    <input type="text" id="eventTitle" placeholder="Título del evento">
-    <input type="date" id="eventDate">
-    <div>
-      <button id="saveEvent">Guardar</button>
-      <button id="cancelEvent">Cancelar</button>
+    <div class="buttons">
+        <button onclick="cambiarVista('month')">Mes</button>
+        <button onclick="cambiarVista('week')">Semana</button>
+        <button onclick="cambiarVista('agenda')">Agenda</button>
     </div>
-  </div>
-</div>
 
-<script src="script.js"></script>
+    <iframe id="calendarFrame" src="https://calendar.google.com/calendar/u/0?cid=NWNiYzkzNTVjMTUxZWE5NjIzODkwYTUwNjcwN2ZkOGY2YWFmMzI5ZmI2YzJlMWFiYWFhYmI1ZGI4ZmZmYzNmMEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&mode=MONTH" frameborder="0" scrolling="no"></iframe>
+
+    <script>
+        function cambiarVista(vista) {
+            const iframe = document.getElementById('calendarFrame');
+            const urlBase = 'TU_URL_DE_GOOGLE_CALENDAR';
+            let modeParam = '';
+
+            switch(vista) {
+                case 'month':
+                    modeParam = '&mode=MONTH';
+                    break;
+                case 'week':
+                    modeParam = '&mode=WEEK';
+                    break;
+                case 'agenda':
+                    modeParam = '&mode=AGENDA';
+                    break;
+            }
+
+            iframe.src = urlBase + modeParam;
+        }
+    </script>
 </body>
 </html>
+
